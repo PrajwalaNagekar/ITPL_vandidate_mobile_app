@@ -33,7 +33,7 @@ const INITIAL_TASKS = [
 ];
 
 const KSA_DOCUMENTS = [
-  { id: 'offer', title: 'Offer Letter', desc: 'Employment offer from ITPL International', status: 'Signed', icon: FileText },
+  { id: 'offer', title: 'Offer Letter', desc: 'Employment offer from ITL International', status: 'Signed', icon: FileText },
   { id: 'loi', title: 'Letter of Intent (LOI)', desc: 'Statement of intent for employment engagement', status: 'Signed', icon: FileText },
   { id: 'joining', title: 'Joining Letter', desc: 'Official joining confirmation and terms', status: 'Action Required', icon: FileText },
 ];
@@ -219,7 +219,7 @@ export default function App() {
                   <div className="px-6 pt-16 py-3 flex justify-between items-center z-10 shrink-0">
                     <div>
                       <h1 className={`text-[24px] font-bold tracking-tight ${THEME.primaryText}`}>{profileData.fullName.split(' ')[0]} A.</h1>
-                      <p className="text-[11px] font-semibold text-[#6B7280] mt-0.5">Candidate ID: {generatedId || 'ITPL-83749201'}</p>
+                      <p className="text-[11px] font-semibold text-[#6B7280] mt-0.5">Candidate ID: {generatedId || 'ITL-83749201'}</p>
                     </div>
                     <button 
                       onClick={() => setShowNotifications(true)}
@@ -323,7 +323,7 @@ function SplashScreen() {
            <div className="w-14 h-14 bg-white/20 backdrop-blur-md rounded-[16px] flex items-center justify-center shadow-lg border border-white/30">
              <ShieldCheck size={32} className="text-[#10B981]" strokeWidth={2.5} />
            </div>
-           <h1 className="text-[48px] font-black tracking-tighter text-white">ITPL</h1>
+           <h1 className="text-[48px] font-black tracking-tighter text-white">ITL</h1>
         </div>
         <p className="text-[15px] font-bold mt-2 text-white tracking-wide text-center leading-snug drop-shadow-sm">
           Empowering the Global Workforce in the Kingdom
@@ -397,7 +397,7 @@ function SignUpScreen({ onNavigate, setGeneratedId }) {
   const handleSignUp = () => {
     // Generate 8 digit number prefixed with ITPL-
     const random8Digit = Math.floor(10000000 + Math.random() * 90000000);
-    setGeneratedId(`ITPL-${random8Digit}`);
+    setGeneratedId(`ITL-${random8Digit}`);
     onNavigate('id-modal');
   };
 
@@ -552,7 +552,7 @@ function OnboardingFlow({ onNavigate, showToast, profileData, setProfileData, ge
         {step === 1 && (
           <div className="animate-in fade-in slide-in-from-right-4">
             <h1 className="text-[24px] font-bold tracking-tight text-[#111827] mb-6">Personal Details</h1>
-            <FormInput label="Candidate ID (System Generated)" value={generatedId || 'ITPL-83749201'} readOnly={true} />
+            <FormInput label="Candidate ID (System Generated)" value={generatedId || 'ITL-83749201'} readOnly={true} />
             <FormInput label="Full Name" value={formData.fullName} onChange={(v) => handleChange('fullName', v)} placeholder="e.g. Ahmed Al-Rashid" />
             <FormInput label="Phone Number" value={formData.phone} onChange={(v) => handleChange('phone', v)} type="tel" placeholder="+966 500 000 000" />
             <FormInput label="Email Address" value={formData.email} onChange={(v) => handleChange('email', v)} type="email" placeholder="ahmed@example.com" />
@@ -909,7 +909,7 @@ function ProcessTrackerTab({ setActiveTab, documents, tasks }) {
     <div className="px-5 animate-in fade-in duration-300 pt-14">
       <div className="mb-8">
         <h1 className="text-[26px] font-bold tracking-tight text-[#111827]">Tracker</h1>
-        <p className="text-[14px] font-medium text-[#4B5563] mt-1">ITPL deployment Flow</p>
+        <p className="text-[14px] font-medium text-[#4B5563] mt-1">ITL deployment Flow</p>
       </div>
       <div className="bg-white rounded-[32px] p-6 shadow-[0_4px_20px_rgb(0,0,0,0.03)] border border-gray-100">
         <div className="relative border-l-[2px] border-gray-100 ml-4 space-y-8 pb-4 mt-2">
@@ -958,7 +958,7 @@ function ProcessTrackerTab({ setActiveTab, documents, tasks }) {
 
 function MessagesTab() {
   const chatHistory = [
-    { type: 'received', text: "Hello! Welcome to ITPL. I'm Sarah, your HR Coordinator.", time: "10:00 AM" },
+    { type: 'received', text: "Hello! Welcome to ITL. I'm Sarah, your HR Coordinator.", time: "10:00 AM" },
     { type: 'sent', text: "Hi Sarah! I have a question about my document verification status.", time: "10:02 AM", read: true },
     { type: 'received', text: "Of course! We're still waiting for your Medical Fitness Certificate.", time: "10:03 AM" },
     { type: 'sent', text: "Where should I get it?", time: "10:05 AM", read: true },
@@ -1074,7 +1074,7 @@ function ProfileTab({ onNavigate, profileData, setProfileData, showToast, genera
           </div>
           <div className="flex flex-col">
             <h2 className="text-[18px] font-bold text-white leading-tight">{profileData.fullName || 'User'}</h2>
-            <p className="text-[13px] font-medium text-white/80 mt-1">ID: {generatedId || 'ITPL-83749201'}</p>
+            <p className="text-[13px] font-medium text-white/80 mt-1">ID: {generatedId || 'ITL-83749201'}</p>
             <div className="flex items-center gap-1.5 mt-2 bg-white/20 px-3 py-1 rounded-full w-fit border border-white/30 shadow-sm">
               <ShieldCheck size={12} className="text-white" />
               <span className="text-[10px] font-bold text-white uppercase tracking-widest">Official Photo Proof</span>
@@ -1122,7 +1122,7 @@ function ProfileTab({ onNavigate, profileData, setProfileData, showToast, genera
             <ProfileRow label="Passport Number" value={profileData.passportNumber || "A12345678"} />
             <ProfileRow label="Passport Expiry" value="2028-06-15" warning />
             <ProfileRow label="Visa Status" value="Processing" />
-            <ProfileRow label="Agency" value="ITPL Direct" />
+            <ProfileRow label="Agency" value="ITL Direct" />
           </div>
         </div>
 
@@ -1152,7 +1152,7 @@ function DocumentViewer({ doc, onNavigate, onSign }) {
       </div>
       <div className="flex-1 overflow-y-auto p-5 hide-scrollbar">
         <div className="bg-white rounded-[32px] shadow-sm p-7 min-h-[600px] text-[12px] text-gray-700 leading-relaxed border border-gray-100">
-          <h1 className="text-[20px] font-bold tracking-tight text-[#111827] mb-6 border-b pb-4">ITPL SAUDI ARABIA</h1>
+          <h1 className="text-[20px] font-bold tracking-tight text-[#111827] mb-6 border-b pb-4">ITL SAUDI ARABIA</h1>
           <h2 className="text-center font-bold text-[14px] mb-4 uppercase text-[#111827]">{doc.title}</h2>
           <p className="mb-4">Dear <strong>Ahmed Al-Rashid</strong>,</p>
           <p className="mb-4 text-justify">We offer you employment in the position of <strong>Senior Plant Technician</strong> for the Refinery project. Made in accordance with Kingdom of Saudi Arabia Labor Law.</p>
@@ -1210,7 +1210,7 @@ function ActiveInterviewScreen({ onNavigate, showToast }) {
         
         <div className="absolute bottom-32 text-center w-full z-10">
           <h2 className="text-white text-[24px] font-bold tracking-tight drop-shadow-lg">Sarah Jenkins</h2>
-          <p className="text-gray-400 text-[13px] font-medium mt-1">HR Manager - ITPL Kingdom of Saudi Arabia</p>
+          <p className="text-gray-400 text-[13px] font-medium mt-1">HR Manager - ITL Kingdom of Saudi Arabia</p>
         </div>
       </div>
       <div className="h-32 px-8 flex items-center justify-between pb-8 bg-gradient-to-t from-black/50 to-transparent relative z-10">
