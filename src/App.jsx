@@ -108,9 +108,12 @@ export default function App() {
   return (
     <>
       <style dangerouslySetInnerHTML={{__html: `
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Poppins:wght@400;500;600;700;800&display=swap');
         * {
           font-family: 'Poppins', sans-serif;
+        }
+        .font-serif {
+          font-family: 'Playfair Display', serif !important;
         }
         .hide-scrollbar::-webkit-scrollbar {
           display: none;
@@ -323,7 +326,7 @@ function SplashScreen() {
            <div className="w-14 h-14 bg-white/20 backdrop-blur-md rounded-[16px] flex items-center justify-center shadow-lg border border-white/30">
              <ShieldCheck size={32} className="text-[#10B981]" strokeWidth={2.5} />
            </div>
-           <h1 className="text-[48px] font-black tracking-tighter text-white">ITL</h1>
+           <h1 className="text-[48px] font-black tracking-tight text-white">I T L</h1>
         </div>
         <p className="text-[15px] font-bold mt-2 text-white tracking-wide text-center leading-snug drop-shadow-sm">
           Empowering the Global Workforce in the Kingdom
@@ -395,7 +398,7 @@ function LoginScreen({ onNavigate }) {
 
 function SignUpScreen({ onNavigate, setGeneratedId }) {
   const handleSignUp = () => {
-    // Generate 8 digit number prefixed with ITPL-
+    // Generate 8 digit number prefixed with ITL-
     const random8Digit = Math.floor(10000000 + Math.random() * 90000000);
     setGeneratedId(`ITL-${random8Digit}`);
     onNavigate('id-modal');
@@ -1151,21 +1154,30 @@ function DocumentViewer({ doc, onNavigate, onSign }) {
         <button className="w-10 h-10 flex items-center justify-center bg-gray-50 rounded-full text-[#111827]"><Download size={18} /></button>
       </div>
       <div className="flex-1 overflow-y-auto p-5 hide-scrollbar">
-        <div className="bg-white rounded-[32px] shadow-sm p-7 min-h-[600px] text-[12px] text-gray-700 leading-relaxed border border-gray-100">
-          <h1 className="text-[20px] font-bold tracking-tight text-[#111827] mb-6 border-b pb-4">ITL SAUDI ARABIA</h1>
-          <h2 className="text-center font-bold text-[14px] mb-4 uppercase text-[#111827]">{doc.title}</h2>
-          <p className="mb-4">Dear <strong>Ahmed Al-Rashid</strong>,</p>
-          <p className="mb-4 text-justify">We offer you employment in the position of <strong>Senior Plant Technician</strong> for the Refinery project. Made in accordance with Kingdom of Saudi Arabia Labor Law.</p>
-          <ul className="list-disc pl-4 space-y-3 mb-6">
-            <li><strong>Basic Salary:</strong> SAR 4,500 / month.</li>
-            <li><strong>Working Hours:</strong> 8 hours / day, 6 days / week.</li>
-            <li><strong>Annual Leave:</strong> 21 days paid leave.</li>
-            <li><strong>Medical Insurance:</strong> Provided.</li>
-          </ul>
+        <div className="bg-white rounded-[32px] shadow-sm p-8 min-h-[600px] text-[13.5px] text-gray-700 leading-relaxed border border-gray-100">
+          
+          {/* Elegant Serif Header mirroring the reference image style */}
+          <div className="mb-8 border-b border-gray-100 pb-6">
+            <h1 className="text-[36px] font-bold tracking-tight text-[#111827] font-serif leading-none mb-2">ITL Saudi Arabia.</h1>
+            <h2 className="text-[18px] text-[#0055FF] font-serif italic font-medium">{doc.title}</h2>
+          </div>
+
+          <p className="mb-5">Dear <strong className="font-semibold text-[#111827]">Ahmed Al-Rashid</strong>,</p>
+          <p className="mb-6 text-justify leading-loose">We offer you employment in the position of <strong className="font-semibold text-[#111827]">Senior Plant Technician</strong> for the Refinery project. Made in accordance with Kingdom of Saudi Arabia Labor Law.</p>
+          
+          <div className="bg-gray-50 p-5 rounded-[24px] mb-8 border border-gray-100">
+            <ul className="space-y-3.5">
+              <li className="flex items-start gap-3"><span className="w-1.5 h-1.5 bg-[#0055FF] rounded-full mt-2 shrink-0"></span><span><strong className="text-[#111827] font-semibold">Basic Salary:</strong> SAR 4,500 / month.</span></li>
+              <li className="flex items-start gap-3"><span className="w-1.5 h-1.5 bg-[#0055FF] rounded-full mt-2 shrink-0"></span><span><strong className="text-[#111827] font-semibold">Working Hours:</strong> 8 hours / day, 6 days / week.</span></li>
+              <li className="flex items-start gap-3"><span className="w-1.5 h-1.5 bg-[#0055FF] rounded-full mt-2 shrink-0"></span><span><strong className="text-[#111827] font-semibold">Annual Leave:</strong> 21 days paid leave.</span></li>
+              <li className="flex items-start gap-3"><span className="w-1.5 h-1.5 bg-[#0055FF] rounded-full mt-2 shrink-0"></span><span><strong className="text-[#111827] font-semibold">Medical Insurance:</strong> Provided.</span></li>
+            </ul>
+          </div>
+
           <div className="mt-8 pt-6 border-t border-gray-100">
             <h3 className="font-bold text-[#111827] mb-4 text-[14px]">Acceptance</h3>
             {doc.status === 'Signed' ? (
-              <div className="flex items-center gap-4 p-4 bg-[#D1FAE5] rounded-[24px]">
+              <div className="flex items-center gap-4 p-5 bg-[#D1FAE5] rounded-[24px]">
                 <CheckCircle2 size={24} className="text-[#10B981]" />
                 <div>
                   <p className="text-[14px] font-bold text-[#111827]">Digitally Signed</p>
@@ -1173,7 +1185,7 @@ function DocumentViewer({ doc, onNavigate, onSign }) {
                 </div>
               </div>
             ) : (
-              <p className="text-[12px] text-gray-500 mb-6">By clicking "Sign" below, you confirm acceptance of these terms.</p>
+              <p className="text-[12px] text-gray-500 mb-6 font-medium">By clicking "Sign" below, you legally confirm acceptance of these terms.</p>
             )}
           </div>
         </div>
