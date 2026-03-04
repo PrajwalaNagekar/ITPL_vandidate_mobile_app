@@ -11,10 +11,10 @@ import {
 
 // --- THEME & CONSTANTS ---
 const THEME = {
-  primary: 'bg-[#111827]', 
+  primary: 'bg-[#ED1C24]', // ITL Official Red
   primaryText: 'text-[#111827]',
-  accent: 'bg-[#0055FF]', 
-  bg: 'bg-[#EEF2F6]', 
+  accent: 'bg-[#B3121B]', // Deep Red
+  bg: 'bg-white', 
   card: 'bg-white',
   success: 'text-[#10B981]', 
   successBg: 'bg-[#D1FAE5]',
@@ -108,12 +108,9 @@ export default function App() {
   return (
     <>
       <style dangerouslySetInnerHTML={{__html: `
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Poppins:wght@400;500;600;700;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
         * {
-          font-family: 'Poppins', sans-serif;
-        }
-        .font-serif {
-          font-family: 'Playfair Display', serif !important;
+          font-family: 'Inter', sans-serif;
         }
         .hide-scrollbar::-webkit-scrollbar {
           display: none;
@@ -123,7 +120,7 @@ export default function App() {
           scrollbar-width: none;
         }
         .glass-panel {
-          background: rgba(255, 255, 255, 0.4);
+          background: rgba(255, 255, 255, 0.2);
           backdrop-filter: blur(16px);
           -webkit-backdrop-filter: blur(16px);
         }
@@ -176,8 +173,8 @@ export default function App() {
                 <div className="space-y-4 overflow-y-auto hide-scrollbar pb-10 flex-1">
                   <div className="bg-white p-4 rounded-[24px] shadow-[0_4px_20px_rgb(0,0,0,0.03)] border border-gray-100">
                     <div className="flex gap-4">
-                      <div className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center shrink-0">
-                         <FileSignature className="text-blue-600" size={18} />
+                      <div className="w-10 h-10 rounded-full bg-red-50 flex items-center justify-center shrink-0">
+                         <FileSignature className="text-[#ED1C24]" size={18} />
                       </div>
                       <div>
                         <h4 className="text-[14px] font-bold text-[#111827] tracking-tight">Offer Letter Ready</h4>
@@ -229,7 +226,7 @@ export default function App() {
                       className="relative p-3 rounded-full bg-white shadow-sm border border-gray-100"
                     >
                       <Bell size={20} className="text-[#111827]" />
-                      <span className="absolute top-2.5 right-2.5 w-2.5 h-2.5 bg-red-500 border-2 border-white rounded-full"></span>
+                      <span className="absolute top-2.5 right-2.5 w-2.5 h-2.5 bg-[#ED1C24] border-2 border-white rounded-full"></span>
                     </button>
                   </div>
                 )}
@@ -272,7 +269,7 @@ function ProfileRow({ label, field, value, warning, isEditing, editData, setEdit
             <select 
               value={editData[field] || ''} 
               onChange={handleChange}
-              className="w-full text-right text-[13px] font-semibold text-[#111827] bg-gray-50 rounded-full px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-[#111827] appearance-none border border-gray-200"
+              className="w-full text-right text-[13px] font-semibold text-[#111827] bg-gray-50 rounded-full px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-[#ED1C24] appearance-none border border-gray-200"
             >
               {options.map(opt => <option key={opt} value={opt}>{opt}</option>)}
             </select>
@@ -281,7 +278,7 @@ function ProfileRow({ label, field, value, warning, isEditing, editData, setEdit
               type={type} 
               value={editData[field] || ''} 
               onChange={handleChange}
-              className="w-full text-right text-[13px] font-semibold text-[#111827] bg-gray-50 rounded-full px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-[#111827] border border-gray-200"
+              className="w-full text-right text-[13px] font-semibold text-[#111827] bg-gray-50 rounded-full px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-[#ED1C24] border border-gray-200"
             />
           )}
         </div>
@@ -299,14 +296,14 @@ function FormInput({ label, value, onChange, type = "text", placeholder, readOnl
   return (
     <div className="mb-5">
       <label className="text-[11px] font-bold text-gray-500 uppercase tracking-widest ml-1 block mb-2">{label}</label>
-      <div className={`p-2 rounded-[24px] shadow-[0_4px_20px_rgb(0,0,0,0.03)] border border-gray-100 ${readOnly ? 'bg-gray-100' : 'bg-white'}`}>
+      <div className={`p-2 rounded-[24px] shadow-[0_4px_20px_rgb(0,0,0,0.03)] border border-gray-100 ${readOnly ? 'bg-gray-50' : 'bg-white'}`}>
          <input 
            type={type} 
            value={value}
            onChange={readOnly ? undefined : (e) => onChange(e.target.value)}
            placeholder={placeholder} 
            readOnly={readOnly}
-           className={`w-full px-3 py-2.5 bg-transparent rounded-xl focus:outline-none font-medium text-[#111827] text-[14px] ${readOnly ? 'cursor-not-allowed text-gray-500 font-bold' : ''}`}
+           className={`w-full px-3 py-2.5 bg-transparent rounded-xl focus:outline-none font-medium text-[#111827] text-[14px] ${readOnly ? 'cursor-not-allowed text-gray-500 font-bold' : 'focus:ring-2 focus:ring-[#ED1C24]/20'}`}
          />
       </div>
     </div>
@@ -317,19 +314,24 @@ function FormInput({ label, value, onChange, type = "text", placeholder, readOnl
 
 function SplashScreen() {
   return (
-    <div className={`h-full w-full flex flex-col items-center justify-center bg-gradient-to-br from-[#A5C0EE] to-[#60A5FA] relative`}>
-      <div className="absolute top-1/4 w-full flex justify-center opacity-20">
-         <div className="w-[300px] h-[300px] bg-white rounded-full blur-[80px]"></div>
-      </div>
-      <div className="animate-pulse flex flex-col items-center z-10 px-6">
-        <div className="flex items-center justify-center gap-3 mb-2">
-           <div className="w-14 h-14 bg-white/20 backdrop-blur-md rounded-[16px] flex items-center justify-center shadow-lg border border-white/30">
-             <ShieldCheck size={32} className="text-[#10B981]" strokeWidth={2.5} />
-           </div>
-           <h1 className="text-[48px] font-black tracking-tight text-white">I T L</h1>
+    <div className={`h-full w-full flex flex-col items-center justify-center bg-white relative`}>
+      <div className="animate-pulse flex flex-col items-center justify-center z-10 px-6 h-full">
+        
+        {/* Authentic ITL Brand Lockup */}
+        <div className="flex flex-col items-center justify-center mb-6 w-full max-w-[280px]">
+          <img 
+            src="https://itlservice.net/images/logo.png" 
+            alt="ITL International Trade Links" 
+            className="w-56 h-auto object-contain drop-shadow-sm"
+            onError={(e) => {
+              e.target.onerror = null;
+              e.target.src = 'https://via.placeholder.com/200x100?text=ITL+Logo'; // fallback
+            }}
+          />
         </div>
-        <p className="text-[15px] font-bold mt-2 text-white tracking-wide text-center leading-snug drop-shadow-sm">
-          Empowering the Global Workforce in the Kingdom
+
+        <p className="text-[14px] font-bold mt-8 text-[#4B5563] tracking-wide text-center leading-snug">
+          Empowering the Global Workforce
         </p>
       </div>
     </div>
@@ -338,12 +340,12 @@ function SplashScreen() {
 
 function LoginScreen({ onNavigate }) {
   return (
-    <div className="h-full w-full flex flex-col pt-24 px-6 bg-[#F8FAFC] animate-in fade-in duration-500 relative">
-      <div className="absolute top-0 right-0 w-64 h-64 bg-blue-100 rounded-full blur-[80px] -z-10"></div>
+    <div className="h-full w-full flex flex-col pt-24 px-6 bg-white animate-in fade-in duration-500 relative">
+      <div className="absolute top-0 right-0 w-64 h-64 bg-red-50 rounded-full blur-[80px] -z-10"></div>
       
       <div className="flex justify-between items-end mb-8 z-10">
         <div>
-           <div className="w-12 h-12 bg-[#111827] rounded-full flex items-center justify-center mb-6 shadow-md">
+           <div className="w-12 h-12 bg-[#ED1C24] rounded-full flex items-center justify-center mb-6 shadow-md">
               <HardHat size={20} className="text-white" />
            </div>
            <h1 className="text-[32px] font-bold tracking-tight text-[#111827] leading-tight">Welcome <br/>back</h1>
@@ -372,7 +374,7 @@ function LoginScreen({ onNavigate }) {
 
       <div className="flex justify-between items-center mt-6 mb-10 px-2 z-10">
         <label className="flex items-center text-[13px] font-medium text-[#4B5563]">
-          <input type="checkbox" className="mr-2 rounded text-[#111827] focus:ring-[#111827] w-4 h-4 accent-[#111827]" />
+          <input type="checkbox" className="mr-2 rounded text-[#ED1C24] focus:ring-[#ED1C24] w-4 h-4 accent-[#ED1C24]" />
           Remember me
         </label>
         <button className="text-[13px] font-semibold text-[#111827]">Forgot Password?</button>
@@ -381,7 +383,7 @@ function LoginScreen({ onNavigate }) {
       <div className="mt-auto pb-12 flex gap-3 z-10">
         <button 
           onClick={() => onNavigate('main')} 
-          className="flex-1 py-4 rounded-full bg-[#111827] text-white font-semibold text-[15px] shadow-[0_8px_20px_rgba(17,24,39,0.2)] hover:bg-gray-800 transition-colors"
+          className="flex-1 py-4 rounded-full bg-[#ED1C24] text-white font-semibold text-[15px] shadow-[0_8px_20px_rgba(237,28,36,0.3)] hover:bg-[#C8102E] transition-colors"
         >
           Log in
         </button>
@@ -405,7 +407,7 @@ function SignUpScreen({ onNavigate, setGeneratedId }) {
   };
 
   return (
-    <div className="h-full w-full flex flex-col pt-16 px-6 bg-[#F8FAFC] overflow-y-auto hide-scrollbar animate-in slide-in-from-right duration-300">
+    <div className="h-full w-full flex flex-col pt-16 px-6 bg-white overflow-y-auto hide-scrollbar animate-in slide-in-from-right duration-300">
       <button onClick={() => onNavigate('login')} className="mb-6 w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-sm text-[#111827] border border-gray-100">
         <ChevronLeft size={20} />
       </button>
@@ -423,7 +425,7 @@ function SignUpScreen({ onNavigate, setGeneratedId }) {
             />
           </div>
         ))}
-        <button onClick={handleSignUp} className="w-full py-4 mt-8 rounded-full bg-[#111827] text-white font-semibold text-[15px] shadow-[0_8px_20px_rgba(17,24,39,0.2)]">
+        <button onClick={handleSignUp} className="w-full py-4 mt-8 rounded-full bg-[#ED1C24] text-white font-semibold text-[15px] shadow-[0_8px_20px_rgba(237,28,36,0.3)] hover:bg-[#C8102E] transition-colors">
           Continue
         </button>
       </div>
@@ -452,7 +454,7 @@ function IdConfirmationModal({ generatedId, onNavigate, showToast }) {
             <Copy size={16} />
           </button>
         </div>
-        <button onClick={() => onNavigate('onboarding')} className="w-full py-4 rounded-full bg-[#111827] text-white font-semibold text-[15px] shadow-lg hover:bg-gray-800">
+        <button onClick={() => onNavigate('onboarding')} className="w-full py-4 rounded-full bg-[#ED1C24] text-white font-semibold text-[15px] shadow-lg hover:bg-[#C8102E] transition-colors">
           Setup Profile
         </button>
       </div>
@@ -498,9 +500,9 @@ function OnboardingFlow({ onNavigate, showToast, profileData, setProfileData, ge
 
   if (isUploading) {
     return (
-      <div className="h-full w-full bg-[#F8FAFC] flex flex-col items-center justify-center relative z-40 px-6 animate-in fade-in">
+      <div className="h-full w-full bg-white flex flex-col items-center justify-center relative z-40 px-6 animate-in fade-in">
         <div className="w-24 h-24 bg-white rounded-full shadow-lg flex items-center justify-center mb-8 border border-gray-100 relative">
-          <Loader2 className="text-[#111827] animate-spin absolute" size={32} />
+          <Loader2 className="text-[#ED1C24] animate-spin absolute" size={32} />
         </div>
         <h2 className="text-[22px] font-bold tracking-tight text-[#111827]">Analyzing Resume</h2>
         <p className="text-[#4B5563] text-center mt-3 font-medium text-[14px]">Extracting your experience automatically...</p>
@@ -509,7 +511,7 @@ function OnboardingFlow({ onNavigate, showToast, profileData, setProfileData, ge
   }
 
   return (
-    <div className="h-full w-full bg-[#F8FAFC] flex flex-col pt-16 px-6 relative z-40 animate-in slide-in-from-right duration-300">
+    <div className="h-full w-full bg-white flex flex-col pt-16 px-6 relative z-40 animate-in slide-in-from-right duration-300">
       
       {/* Progress Bar (Visible only during manual entry) */}
       {step > 0 && (
@@ -518,8 +520,8 @@ function OnboardingFlow({ onNavigate, showToast, profileData, setProfileData, ge
             <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Manual Setup</span>
             <span className="text-[10px] font-bold text-[#111827] uppercase tracking-widest">Step {step} of 5</span>
           </div>
-          <div className="h-1.5 w-full bg-gray-200 rounded-full overflow-hidden">
-            <div className="h-full bg-[#111827] transition-all duration-300" style={{ width: `${(step / 5) * 100}%` }}></div>
+          <div className="h-1.5 w-full bg-gray-100 rounded-full overflow-hidden">
+            <div className="h-full bg-[#ED1C24] transition-all duration-300" style={{ width: `${(step / 5) * 100}%` }}></div>
           </div>
         </div>
       )}
@@ -534,9 +536,9 @@ function OnboardingFlow({ onNavigate, showToast, profileData, setProfileData, ge
 
             <button 
               onClick={handleAiUpload}
-              className="w-full py-10 border-2 border-dashed border-blue-200 bg-white rounded-[40px] flex flex-col items-center justify-center hover:bg-blue-50 transition-colors shadow-sm"
+              className="w-full py-10 border-2 border-dashed border-red-200 bg-white rounded-[40px] flex flex-col items-center justify-center hover:bg-red-50 transition-colors shadow-sm"
             >
-              <div className="w-16 h-16 bg-[#111827] rounded-full shadow-md flex items-center justify-center mb-4">
+              <div className="w-16 h-16 bg-[#ED1C24] rounded-full shadow-md flex items-center justify-center mb-4">
                 <Upload size={24} className="text-white" />
               </div>
               <span className="font-bold text-[#111827] text-[16px]">Upload Resume</span>
@@ -544,7 +546,7 @@ function OnboardingFlow({ onNavigate, showToast, profileData, setProfileData, ge
             </button>
 
             <div className="mt-8">
-               <button onClick={handleManualSkip} className="w-full py-4 rounded-full bg-white text-[#111827] font-semibold text-[15px] shadow-[0_4px_15px_rgba(0,0,0,0.05)] border border-gray-100">
+               <button onClick={handleManualSkip} className="w-full py-4 rounded-full bg-white text-[#ED1C24] font-bold text-[15px] shadow-[0_4px_15px_rgba(0,0,0,0.05)] border border-red-100 hover:bg-red-50 transition-colors">
                  Skip & Enter Manually
                </button>
             </div>
@@ -626,7 +628,7 @@ function OnboardingFlow({ onNavigate, showToast, profileData, setProfileData, ge
           </button>
           <button 
             onClick={handleNextStep}
-            className={`flex-1 h-14 rounded-full text-white font-bold text-[15px] shadow-[0_8px_20px_rgba(17,24,39,0.2)] flex items-center justify-center gap-2 ${THEME.primary} hover:opacity-95 transition-opacity`}
+            className={`flex-1 h-14 rounded-full text-white font-bold text-[15px] shadow-[0_8px_20px_rgba(237,28,36,0.3)] flex items-center justify-center gap-2 bg-[#ED1C24] hover:bg-[#C8102E] transition-colors`}
           >
             {step === 5 ? 'Complete Profile' : 'Continue'} {step !== 5 && <ChevronRight size={20} />}
           </button>
@@ -651,7 +653,7 @@ function DocumentsTab({ tasks, onUpload, documents, onViewDoc, showToast }) {
   const getStatusColor = (status) => {
     switch(status) {
       case 'Verified': return 'text-[#10B981] bg-[#D1FAE5]';
-      case 'Submitted': return 'text-[#3B82F6] bg-[#DBEAFE]';
+      case 'Submitted': return 'text-[#ED1C24] bg-red-50';
       case 'Pending': return 'text-[#F59E0B] bg-[#FEF3C7]';
       default: return 'text-[#6B7280] bg-gray-100';
     }
@@ -673,7 +675,7 @@ function DocumentsTab({ tasks, onUpload, documents, onViewDoc, showToast }) {
               onClick={() => setActiveFilter(filter.id)}
               className={`px-6 py-2.5 rounded-full text-[13px] font-semibold transition-all ${
                 isActive 
-                  ? 'bg-[#111827] text-white shadow-md' 
+                  ? 'bg-[#ED1C24] text-white shadow-md' 
                   : 'text-[#6B7280] hover:text-[#111827]'
               }`}
             >
@@ -689,7 +691,7 @@ function DocumentsTab({ tasks, onUpload, documents, onViewDoc, showToast }) {
           {documents.map((doc) => (
             <div key={doc.id} className="bg-white rounded-[28px] p-4 shadow-[0_4px_20px_rgb(0,0,0,0.03)] flex items-center justify-between border border-transparent hover:border-gray-100 transition-colors">
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
+                <div className="w-12 h-12 rounded-full bg-red-50 text-[#ED1C24] flex items-center justify-center shrink-0">
                    <FileText size={20} strokeWidth={2}/>
                 </div>
                 <div>
@@ -727,7 +729,7 @@ function DocumentsTab({ tasks, onUpload, documents, onViewDoc, showToast }) {
               </div>
               <div className="shrink-0">
                 {(task.status === 'Pending' || task.status === 'Rejected') ? (
-                  <button onClick={() => onUpload(task.id)} className="bg-[#111827] text-white text-[13px] font-semibold px-5 py-2.5 rounded-full hover:bg-gray-800 transition-colors">
+                  <button onClick={() => onUpload(task.id)} className="bg-[#ED1C24] text-white text-[13px] font-semibold px-5 py-2.5 rounded-full hover:bg-[#C8102E] transition-colors">
                     Upload
                   </button>
                 ) : (
@@ -751,47 +753,47 @@ function DashboardTab({ setActiveTab, onNavigate, setViewingDoc, documents, prof
   return (
     <div className="px-5 space-y-6 animate-in fade-in duration-300 pt-2">
       
-      {/* High Contrast Hero Card */}
-      <div className={`bg-gradient-to-br from-[#A5C0EE] to-[#60A5FA] rounded-[40px] p-7 shadow-lg relative overflow-hidden`}>
-        <div className="absolute top-0 right-0 w-32 h-32 bg-white opacity-20 rounded-full blur-[30px] translate-x-10 -translate-y-10"></div>
+      {/* High Contrast ITL Red Hero Card */}
+      <div className={`bg-gradient-to-br from-[#ED1C24] to-[#C8102E] rounded-[40px] p-7 shadow-lg relative overflow-hidden`}>
+        <div className="absolute top-0 right-0 w-32 h-32 bg-white opacity-10 rounded-full blur-[30px] translate-x-10 -translate-y-10"></div>
         
         <div className="flex justify-between items-center mb-6 relative z-10">
-          <div className="glass-panel text-[11px] font-bold px-4 py-1.5 rounded-full text-[#111827] flex items-center gap-1.5 border border-white/50">
-            <CheckCircle2 size={14} className="text-[#10B981]" strokeWidth={3} />
+          <div className="glass-panel text-[11px] font-bold px-4 py-1.5 rounded-full text-white flex items-center gap-1.5 border border-white/30">
+            <CheckCircle2 size={14} className="text-white" strokeWidth={3} />
             {allSigned ? "Stage 7 of 8" : "Stage 6 of 8"}
           </div>
-          <div className="glass-panel text-[11px] font-bold px-4 py-1.5 rounded-full flex items-center border border-white/50 text-[#111827]">
+          <div className="glass-panel text-[11px] font-bold px-4 py-1.5 rounded-full flex items-center border border-white/30 text-white">
             <MapPin size={12} className="mr-1"/> Jubail
           </div>
         </div>
         
         {actionDoc ? (
           <>
-            <h2 className="text-[26px] font-bold tracking-tight mb-2 relative z-10 leading-tight text-[#111827]">{actionDoc.title} Ready</h2>
-            <p className="text-[14px] text-[#1F2937] mb-8 relative z-10 font-medium">Your Kingdom of Saudi Arabia Labor Law compliant {actionDoc.title.toLowerCase()} is generated.</p>
-            <button onClick={() => { setViewingDoc(actionDoc); onNavigate('document_viewer'); }} className="w-full py-4 bg-[#111827] text-white font-semibold rounded-full text-[15px] shadow-[0_8px_20px_rgba(17,24,39,0.3)] hover:bg-gray-800 transition-colors flex items-center justify-center">
+            <h2 className="text-[26px] font-bold tracking-tight mb-2 relative z-10 leading-tight text-white">{actionDoc.title} Ready</h2>
+            <p className="text-[14px] text-white/90 mb-8 relative z-10 font-medium">Your Kingdom of Saudi Arabia Labor Law compliant {actionDoc.title.toLowerCase()} is generated.</p>
+            <button onClick={() => { setViewingDoc(actionDoc); onNavigate('document_viewer'); }} className="w-full py-4 bg-white text-[#ED1C24] font-bold rounded-full text-[15px] shadow-[0_8px_20px_rgba(0,0,0,0.15)] hover:bg-gray-50 transition-colors flex items-center justify-center">
               Review & Sign
             </button>
           </>
         ) : allSigned ? (
           <>
-            <h2 className="text-[26px] font-bold tracking-tight mb-2 relative z-10 leading-tight text-[#111827]">Visa Processing</h2>
-            <p className="text-[14px] text-[#1F2937] mb-8 relative z-10 font-medium">Your Wakala and Work Visa are currently being processed via Enjaz portal.</p>
-            <div className="w-full bg-white/40 h-2.5 rounded-full mb-6 overflow-hidden border border-white/50">
-               <div className="bg-[#10B981] w-[90%] h-full rounded-full"></div>
+            <h2 className="text-[26px] font-bold tracking-tight mb-2 relative z-10 leading-tight text-white">Visa Processing</h2>
+            <p className="text-[14px] text-white/90 mb-8 relative z-10 font-medium">Your Wakala and Work Visa are currently being processed via Enjaz portal.</p>
+            <div className="w-full bg-black/20 h-2.5 rounded-full mb-6 overflow-hidden border border-white/20">
+               <div className="bg-white w-[90%] h-full rounded-full"></div>
             </div>
-            <button onClick={() => setActiveTab('tracker')} className="w-full py-4 bg-white text-[#111827] font-semibold rounded-full text-[15px] shadow-md hover:bg-gray-50 transition-colors">
+            <button onClick={() => setActiveTab('tracker')} className="w-full py-4 bg-white text-[#ED1C24] font-bold rounded-full text-[15px] shadow-md hover:bg-gray-50 transition-colors">
               View Tracker
             </button>
           </>
         ) : (
           <>
-            <h2 className="text-[26px] font-bold tracking-tight mb-2 relative z-10 leading-tight text-[#111827]">Document Review</h2>
-            <p className="text-[14px] text-[#1F2937] mb-8 relative z-10 font-medium">We are verifying your documents for the Saudi Work Visa.</p>
-            <div className="w-full bg-white/40 h-2.5 rounded-full mb-6 overflow-hidden border border-white/50">
-              <div className="bg-[#F59E0B] w-[75%] h-full rounded-full"></div>
+            <h2 className="text-[26px] font-bold tracking-tight mb-2 relative z-10 leading-tight text-white">Document Review</h2>
+            <p className="text-[14px] text-white/90 mb-8 relative z-10 font-medium">We are verifying your documents for the Saudi Work Visa.</p>
+            <div className="w-full bg-black/20 h-2.5 rounded-full mb-6 overflow-hidden border border-white/20">
+              <div className="bg-white w-[75%] h-full rounded-full"></div>
             </div>
-            <button onClick={() => setActiveTab('tasks')} className="w-full py-4 bg-white text-[#111827] font-semibold rounded-full text-[15px] shadow-md hover:bg-gray-50 transition-colors">
+            <button onClick={() => setActiveTab('tasks')} className="w-full py-4 bg-white text-[#ED1C24] font-bold rounded-full text-[15px] shadow-md hover:bg-gray-50 transition-colors">
               View Tasks
             </button>
           </>
@@ -802,8 +804,8 @@ function DashboardTab({ setActiveTab, onNavigate, setViewingDoc, documents, prof
       <div className="bg-white rounded-[32px] p-5 shadow-[0_4px_20px_rgb(0,0,0,0.03)] border border-gray-100 flex flex-col">
         <div className="flex justify-between items-center mb-4 pl-2 pr-1">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-blue-50 rounded-full flex items-center justify-center">
-              <Video className="text-blue-600" size={20} />
+            <div className="w-10 h-10 bg-red-50 rounded-full flex items-center justify-center">
+              <Video className="text-[#ED1C24]" size={20} />
             </div>
             <h3 className="font-bold text-[#111827] text-[16px]">Tech Round</h3>
           </div>
@@ -813,7 +815,7 @@ function DashboardTab({ setActiveTab, onNavigate, setViewingDoc, documents, prof
            <p className="text-[13px] font-medium text-[#111827] flex items-center"><Calendar size={16} className="mr-2 text-[#6B7280]"/> Oct 24</p>
            <p className="text-[13px] font-medium text-[#111827] flex items-center"><Clock size={16} className="mr-2 text-[#6B7280]"/> 11:00 AM</p>
         </div>
-        <button onClick={() => onNavigate('interview')} className="w-full bg-[#111827] text-white font-semibold text-[15px] py-4 rounded-full shadow-md hover:bg-gray-800 transition-colors">
+        <button onClick={() => onNavigate('interview')} className="w-full bg-[#ED1C24] text-white font-semibold text-[15px] py-4 rounded-full shadow-md hover:bg-[#C8102E] transition-colors">
           Join Video Interview
         </button>
       </div>
@@ -822,7 +824,7 @@ function DashboardTab({ setActiveTab, onNavigate, setViewingDoc, documents, prof
       <div className="bg-white rounded-[32px] p-6 shadow-[0_4px_20px_rgb(0,0,0,0.03)] border border-gray-100">
         <div className="flex justify-between items-center mb-5">
            <h3 className="font-bold text-[#111827] text-[16px]">Resume</h3>
-           <button onClick={() => setActiveTab('profile')} className="text-[#0055FF] bg-blue-50 px-3 py-1 rounded-full text-[11px] font-bold">Update</button>
+           <button onClick={() => setActiveTab('profile')} className="text-[#ED1C24] bg-red-50 px-3 py-1 rounded-full text-[11px] font-bold">Update</button>
         </div>
         <div className="space-y-4">
           <div>
@@ -923,7 +925,7 @@ function ProcessTrackerTab({ setActiveTab, documents, tasks }) {
             return (
               <div key={stage.id} className={`relative pl-8 ${stage.status === 'upcoming' ? 'opacity-60' : 'opacity-100'}`}>
                 {/* Status Indicator Node */}
-                <div className={`absolute -left-[10px] top-0 w-5 h-5 rounded-full ring-4 ring-white flex items-center justify-center shadow-sm ${isCompleted ? 'bg-[#10B981]' : isActive ? 'bg-[#0055FF] ring-blue-50' : 'bg-gray-200'}`}>
+                <div className={`absolute -left-[10px] top-0 w-5 h-5 rounded-full ring-4 ring-white flex items-center justify-center shadow-sm ${isCompleted ? 'bg-[#10B981]' : isActive ? 'bg-[#ED1C24] ring-red-50' : 'bg-gray-200'}`}>
                   {isCompleted && <Check size={12} className="text-white stroke-[3]" />}
                   {isActive && <div className="w-2.5 h-2.5 bg-white rounded-full animate-pulse"></div>}
                 </div>
@@ -931,8 +933,8 @@ function ProcessTrackerTab({ setActiveTab, documents, tasks }) {
                 {/* Content */}
                 <div className="-mt-1.5">
                   <div className="flex flex-col mb-1.5">
-                    <h3 className={`text-[15px] font-semibold ${isCompleted ? 'text-[#111827]' : isActive ? 'text-[#0055FF]' : 'text-[#6B7280]'}`}>{stage.title}</h3>
-                    <span className={`text-[11px] font-bold mt-0.5 ${isActive ? 'text-[#0055FF] uppercase tracking-widest' : 'text-[#6B7280]'}`}>{stage.date}</span>
+                    <h3 className={`text-[15px] font-semibold ${isCompleted ? 'text-[#111827]' : isActive ? 'text-[#ED1C24]' : 'text-[#6B7280]'}`}>{stage.title}</h3>
+                    <span className={`text-[11px] font-bold mt-0.5 ${isActive ? 'text-[#ED1C24] uppercase tracking-widest' : 'text-[#6B7280]'}`}>{stage.date}</span>
                   </div>
                   
                   {/* Stage Description */}
@@ -944,7 +946,7 @@ function ProcessTrackerTab({ setActiveTab, documents, tasks }) {
                   {isActive && stage.actionBtn && (
                     <button 
                       onClick={() => setActiveTab(stage.actionBtn.tab)}
-                      className="mt-3 bg-[#111827] text-white text-[11px] font-bold uppercase tracking-widest px-4 py-2.5 rounded-full hover:bg-gray-800 transition-colors shadow-md flex items-center gap-1.5"
+                      className="mt-3 bg-[#ED1C24] text-white text-[11px] font-bold uppercase tracking-widest px-4 py-2.5 rounded-full hover:bg-[#C8102E] transition-colors shadow-md flex items-center gap-1.5"
                     >
                       {stage.actionBtn.label} <ChevronRight size={14} />
                     </button>
@@ -971,7 +973,7 @@ function MessagesTab() {
   return (
     <div className="flex flex-col h-full bg-[#F8FAFC] animate-in fade-in duration-300 relative">
       <div className="bg-white px-5 pt-14 pb-4 flex items-center gap-4 shadow-sm z-20 shrink-0">
-        <div className="w-12 h-12 rounded-full bg-[#111827] text-white flex items-center justify-center font-bold text-xl shadow-md shrink-0">
+        <div className="w-12 h-12 rounded-full bg-[#ED1C24] text-white flex items-center justify-center font-bold text-xl shadow-md shrink-0">
           S
         </div>
         <div>
@@ -990,13 +992,13 @@ function MessagesTab() {
           <div key={idx} className={`flex ${msg.type === 'sent' ? 'justify-end' : 'justify-start'}`}>
             <div className={`max-w-[80%] p-4 shadow-sm relative ${
               msg.type === 'sent' 
-                ? 'bg-[#111827] text-white rounded-t-[24px] rounded-bl-[24px] rounded-br-sm' 
+                ? 'bg-[#ED1C24] text-white rounded-t-[24px] rounded-bl-[24px] rounded-br-sm' 
                 : 'bg-white border border-gray-100 text-[#111827] rounded-t-[24px] rounded-br-[24px] rounded-bl-sm'
             }`}>
               <p className="text-[14px] font-medium leading-relaxed">{msg.text}</p>
-              <div className={`flex items-center justify-end gap-1 mt-2 ${msg.type === 'sent' ? 'text-gray-400' : 'text-[#6B7280]'}`}>
+              <div className={`flex items-center justify-end gap-1 mt-2 ${msg.type === 'sent' ? 'text-red-200' : 'text-[#6B7280]'}`}>
                 <span className="text-[10px] font-semibold">{msg.time}</span>
-                {msg.type === 'sent' && <CheckCheck size={14} className="text-blue-400" />}
+                {msg.type === 'sent' && <CheckCheck size={14} className="text-white" />}
               </div>
             </div>
           </div>
@@ -1012,7 +1014,7 @@ function MessagesTab() {
           placeholder="Message..." 
           className="flex-1 bg-gray-50 rounded-full px-5 py-3.5 text-[14px] font-medium text-[#111827] focus:outline-none focus:ring-2 focus:ring-gray-200 placeholder-[#6B7280]" 
         />
-        <button className="w-12 h-12 rounded-full bg-[#111827] text-white flex items-center justify-center shadow-md hover:bg-gray-800 transition-colors shrink-0">
+        <button className="w-12 h-12 rounded-full bg-[#ED1C24] text-white flex items-center justify-center shadow-md hover:bg-[#C8102E] transition-colors shrink-0">
           <Send size={18} className="ml-0.5" />
         </button>
       </div>
@@ -1050,11 +1052,11 @@ function ProfileTab({ onNavigate, profileData, setProfileData, showToast, genera
 
   return (
     <div className="flex flex-col animate-in fade-in duration-300">
-      <div className="bg-gradient-to-b from-[#2C5795] to-[#31A6A1] pt-16 pb-10 px-6 rounded-b-[48px] relative z-0 shadow-lg">
+      <div className="bg-gradient-to-b from-[#ED1C24] to-[#C8102E] pt-16 pb-10 px-6 rounded-b-[48px] relative z-0 shadow-lg">
         <h1 className="text-[24px] font-bold text-white mb-6">Profile</h1>
         <div className="flex items-center gap-5">
           <div className="relative shrink-0">
-            <div className="w-20 h-20 bg-white text-[#111827] rounded-full flex items-center justify-center text-[32px] font-bold shadow-md overflow-hidden border-2 border-white/50">
+            <div className="w-20 h-20 bg-white text-[#ED1C24] rounded-full flex items-center justify-center text-[32px] font-bold shadow-md overflow-hidden border-2 border-white/50">
               {profileData.photo ? (
                 <img src={profileData.photo} alt="Profile Proof" className="w-full h-full object-cover" />
               ) : (
@@ -1090,7 +1092,7 @@ function ProfileTab({ onNavigate, profileData, setProfileData, showToast, genera
         <div className="bg-white rounded-[32px] shadow-[0_4px_20px_rgb(0,0,0,0.03)] border border-gray-100 overflow-hidden">
           <div className="flex items-center justify-between px-6 py-5 border-b border-gray-50">
             <h3 className="font-bold text-[#111827] text-[15px]">Personal Info</h3>
-            <button onClick={handleEditToggle} className="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center text-[#111827] hover:bg-gray-100">
+            <button onClick={handleEditToggle} className="w-8 h-8 rounded-full bg-red-50 flex items-center justify-center text-[#ED1C24] hover:bg-red-100">
               {isEditing ? <X size={16} /> : <Edit3 size={16} />}
             </button>
           </div>
@@ -1110,7 +1112,7 @@ function ProfileTab({ onNavigate, profileData, setProfileData, showToast, genera
 
           {isEditing && (
             <div className="px-6 pb-6 pt-2">
-              <button onClick={handleSave} className="w-full py-4 bg-[#111827] text-white font-semibold rounded-full text-[15px] shadow-lg hover:bg-gray-800 transition-colors">
+              <button onClick={handleSave} className="w-full py-4 bg-[#ED1C24] text-white font-semibold rounded-full text-[15px] shadow-lg hover:bg-[#C8102E] transition-colors">
                 Save Changes
               </button>
             </div>
@@ -1156,10 +1158,11 @@ function DocumentViewer({ doc, onNavigate, onSign }) {
       <div className="flex-1 overflow-y-auto p-5 hide-scrollbar">
         <div className="bg-white rounded-[32px] shadow-sm p-8 min-h-[600px] text-[13.5px] text-gray-700 leading-relaxed border border-gray-100">
           
-          {/* Elegant Serif Header mirroring the reference image style */}
           <div className="mb-8 border-b border-gray-100 pb-6">
-            <h1 className="text-[36px] font-bold tracking-tight text-[#111827] font-serif leading-none mb-2">ITL Saudi Arabia.</h1>
-            <h2 className="text-[18px] text-[#0055FF] font-serif italic font-medium">{doc.title}</h2>
+            <h1 className="text-[32px] font-black italic tracking-tighter text-[#ED1C24] leading-none mb-2" style={{ transform: 'skewX(-10deg)' }}>
+              ITL <span className="not-italic text-[#111827] font-bold">Saudi Arabia.</span>
+            </h1>
+            <h2 className="text-[18px] text-[#111827] font-bold">{doc.title}</h2>
           </div>
 
           <p className="mb-5">Dear <strong className="font-semibold text-[#111827]">Ahmed Al-Rashid</strong>,</p>
@@ -1167,10 +1170,10 @@ function DocumentViewer({ doc, onNavigate, onSign }) {
           
           <div className="bg-gray-50 p-5 rounded-[24px] mb-8 border border-gray-100">
             <ul className="space-y-3.5">
-              <li className="flex items-start gap-3"><span className="w-1.5 h-1.5 bg-[#0055FF] rounded-full mt-2 shrink-0"></span><span><strong className="text-[#111827] font-semibold">Basic Salary:</strong> SAR 4,500 / month.</span></li>
-              <li className="flex items-start gap-3"><span className="w-1.5 h-1.5 bg-[#0055FF] rounded-full mt-2 shrink-0"></span><span><strong className="text-[#111827] font-semibold">Working Hours:</strong> 8 hours / day, 6 days / week.</span></li>
-              <li className="flex items-start gap-3"><span className="w-1.5 h-1.5 bg-[#0055FF] rounded-full mt-2 shrink-0"></span><span><strong className="text-[#111827] font-semibold">Annual Leave:</strong> 21 days paid leave.</span></li>
-              <li className="flex items-start gap-3"><span className="w-1.5 h-1.5 bg-[#0055FF] rounded-full mt-2 shrink-0"></span><span><strong className="text-[#111827] font-semibold">Medical Insurance:</strong> Provided.</span></li>
+              <li className="flex items-start gap-3"><span className="w-1.5 h-1.5 bg-[#ED1C24] rounded-full mt-2 shrink-0"></span><span><strong className="text-[#111827] font-semibold">Basic Salary:</strong> SAR 4,500 / month.</span></li>
+              <li className="flex items-start gap-3"><span className="w-1.5 h-1.5 bg-[#ED1C24] rounded-full mt-2 shrink-0"></span><span><strong className="text-[#111827] font-semibold">Working Hours:</strong> 8 hours / day, 6 days / week.</span></li>
+              <li className="flex items-start gap-3"><span className="w-1.5 h-1.5 bg-[#ED1C24] rounded-full mt-2 shrink-0"></span><span><strong className="text-[#111827] font-semibold">Annual Leave:</strong> 21 days paid leave.</span></li>
+              <li className="flex items-start gap-3"><span className="w-1.5 h-1.5 bg-[#ED1C24] rounded-full mt-2 shrink-0"></span><span><strong className="text-[#111827] font-semibold">Medical Insurance:</strong> Provided.</span></li>
             </ul>
           </div>
 
@@ -1192,7 +1195,7 @@ function DocumentViewer({ doc, onNavigate, onSign }) {
       </div>
       {doc.status !== 'Signed' && doc.status === 'Action Required' && (
         <div className="bg-transparent px-5 pb-10">
-           <button onClick={onSign} className="w-full py-4 bg-[#111827] text-white rounded-full font-bold text-[15px] shadow-[0_8px_20px_rgba(17,24,39,0.2)] flex justify-center items-center">
+           <button onClick={onSign} className="w-full py-4 bg-[#ED1C24] text-white rounded-full font-bold text-[15px] shadow-[0_8px_20px_rgba(237,28,36,0.3)] flex justify-center items-center hover:bg-[#C8102E]">
              Sign Document
            </button>
         </div>
@@ -1228,7 +1231,7 @@ function ActiveInterviewScreen({ onNavigate, showToast }) {
       <div className="h-32 px-8 flex items-center justify-between pb-8 bg-gradient-to-t from-black/50 to-transparent relative z-10">
         <button className="w-14 h-14 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center text-white"><Mic size={22} /></button>
         <button className="w-14 h-14 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center text-white"><Camera size={22} /></button>
-        <button onClick={handleEndCall} className="w-16 h-16 rounded-full bg-red-500 flex items-center justify-center text-white shadow-[0_4px_20px_rgba(239,68,68,0.4)]">
+        <button onClick={handleEndCall} className="w-16 h-16 rounded-full bg-[#ED1C24] flex items-center justify-center text-white shadow-[0_4px_20px_rgba(237,28,36,0.4)]">
           <Phone size={24} className="rotate-[135deg]" />
         </button>
       </div>
@@ -1255,7 +1258,7 @@ function BottomNavBar({ activeTab, setActiveTab }) {
           
           if (tab.id === 'tasks') {
             return (
-              <button key={tab.id} onClick={() => setActiveTab(tab.id)} className="flex flex-col items-center justify-center w-14 h-14 bg-[#111827] rounded-full shadow-md transform -translate-y-2">
+              <button key={tab.id} onClick={() => setActiveTab(tab.id)} className="flex flex-col items-center justify-center w-14 h-14 bg-[#ED1C24] rounded-full shadow-md transform -translate-y-2 hover:bg-[#C8102E] transition-colors">
                 <Icon size={20} className="text-white mb-0.5" strokeWidth={2.5} />
                 <span className="text-[9px] font-bold text-white tracking-wide">{tab.label}</span>
               </button>
@@ -1264,8 +1267,8 @@ function BottomNavBar({ activeTab, setActiveTab }) {
 
           return (
             <button key={tab.id} onClick={() => setActiveTab(tab.id)} className="flex flex-col items-center justify-center w-[18%]">
-              <Icon size={20} className={`mb-1 transition-colors ${isActive ? 'text-[#111827]' : 'text-gray-400'}`} strokeWidth={isActive ? 2.5 : 2} />
-              <span className={`text-[9px] font-semibold transition-colors tracking-wide ${isActive ? 'text-[#111827]' : 'text-gray-400'}`}>{tab.label}</span>
+              <Icon size={20} className={`mb-1 transition-colors ${isActive ? 'text-[#ED1C24]' : 'text-gray-400'}`} strokeWidth={isActive ? 2.5 : 2} />
+              <span className={`text-[9px] font-semibold transition-colors tracking-wide ${isActive ? 'text-[#ED1C24]' : 'text-gray-400'}`}>{tab.label}</span>
             </button>
           );
         })}
